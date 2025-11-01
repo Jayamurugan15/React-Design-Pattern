@@ -1,8 +1,8 @@
 import { BrowserRouter,Route, Routes } from 'react-router-dom'
 import ProductListContainer from './components/ProductListContainer'
-import ProductListPresenter from './components/ProductListPresenter'
-import ProductCard from './components/ProductCard'
 import './index.css';
+import ProductOverview from './components/ProductOverView';
+
 function App() {
   
   return (
@@ -10,7 +10,7 @@ function App() {
      <BrowserRouter>
       <Routes>
       <Route path='/' element={<ProductListContainer/>}/>
-      <Route path='/products/:id' element={<ProductCard/>}/>
+      <Route path="/products/:id" element={<ProductOverview />} />
     </Routes>
      </BrowserRouter>
     </>

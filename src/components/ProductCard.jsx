@@ -1,9 +1,8 @@
-
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Addtocart from './Addtocart';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product,addToCart }) => {
+ 
+  
     const navigate = useNavigate();
 
   const discount = product.originalPrice
@@ -11,7 +10,14 @@ const ProductCard = ({ product }) => {
     : 0;
 
     const handleClick = () => {
+        console.log("Product Id from click:", product.id);
+        
         navigate(`/products/${product.id}`);
+    }
+
+    const handleAddtoCart = (e) => {
+      e.stopPropagation();
+      addToCart(product.id)
     }
 
   return (
@@ -30,9 +36,9 @@ const ProductCard = ({ product }) => {
         )}
       </div>
 
-      {/* Product Details */}
+     
       <div className="p-4">
-        {/* Brand and Tags */}
+        
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-600 font-medium">{product.brand}</span>
           <div className="flex space-x-1">
@@ -47,13 +53,13 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
 
-        {/* Product Name */}
+       
         <h2 className="text-lg font-semibold text-gray-800 truncate">{product.name}</h2>
 
-        {/* Description */}
+        
         <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
 
-        {/* Pricing */}
+        
         <div className="mt-3 flex items-center space-x-2">
           <span className="text-lg font-bold text-gray-900">${product.price.toFixed(2)}</span>
           {product?.originalPrice && (
@@ -63,7 +69,7 @@ const ProductCard = ({ product }) => {
           )}
         </div>
 
-        <div className="mt-2 flex items-center">
+        {/* <div className="mt-2 flex items-center">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <svg
@@ -79,7 +85,7 @@ const ProductCard = ({ product }) => {
             ))}
           </div>
           <span className="ml-2 text-sm text-gray-600">({product.reviewCount} reviews)</span>
-        </div>
+        </div> */}
 
         <div className="mt-2">
           <span
@@ -93,7 +99,7 @@ const ProductCard = ({ product }) => {
 
         {/* Call to Action */}
         <button
-        
+          onClick={handleAddtoCart}
           className={`mt-4 w-full py-2 rounded-lg font-semibold text-white ${
            product.inStock
               ? 'bg-blue-600 hover:bg-blue-700'
