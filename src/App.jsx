@@ -1,20 +1,21 @@
-import { BrowserRouter,Route, Routes } from 'react-router-dom'
-import ProductListContainer from './components/ProductListContainer'
-import './index.css';
-import ProductOverview from './components/ProductOverView';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProductListContainer from "./components/product/ProductListContainer";
+import { Toaster } from "react-hot-toast";
+import "./index.css";
 
 function App() {
-  
   return (
     <>
-     <BrowserRouter>
-      <Routes>
-      <Route path='/' element={<ProductListContainer/>}/>
-      <Route path="/products/:id" element={<ProductOverview />} />
-    </Routes>
-     </BrowserRouter>
+      <Toaster position="top-center" />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ProductListContainer />} />
+          <Route path="/products/:id" element={<ProductListContainer />} />
+          <Route path="/cart" element={<ProductListContainer />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,46 +1,38 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ product,addToCart }) => {
- 
-  
-    const navigate = useNavigate();
+const ProductCard = ({ product, addToCart }) => {
+  const navigate = useNavigate();
 
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : 0;
+  const handleClick = () => {
+    console.log("Product Id from click:", product.id);
 
-    const handleClick = () => {
-        console.log("Product Id from click:", product.id);
-        
-        navigate(`/products/${product.id}`);
-    }
+    navigate(`/products/${product.id}`);
+  };
 
-    const handleAddtoCart = (e) => {
-      e.stopPropagation();
-      addToCart(product.id)
-    }
+  const handleAddtoCart = (e) => {
+    e.stopPropagation();
+    addToCart(product.id);
+  };
 
   return (
-    <div onClick={handleClick} className="max-w-xs rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
-     
+    <div
+      onClick={handleClick}
+      className="max-w-xs rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300"
+    >
       <div className="relative">
         <img
           className="w-full h-48 object-cover"
           src={product.imageUrl}
           alt={product.name}
         />
-        {discount > 0 && (
-          <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">
-            {discount}% OFF
-          </span>
-        )}
+        
       </div>
 
-     
       <div className="p-4">
-        
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-600 font-medium">{product.brand}</span>
+          <span className="text-sm text-gray-600 font-medium">
+            {product.brand}
+          </span>
           <div className="flex space-x-1">
             {product.tags.slice(0, 2).map((tag, index) => (
               <span
@@ -53,15 +45,18 @@ const ProductCard = ({ product,addToCart }) => {
           </div>
         </div>
 
-       
-        <h2 className="text-lg font-semibold text-gray-800 truncate">{product.name}</h2>
+        <h2 className="text-lg font-semibold text-gray-800 truncate">
+          {product.name}
+        </h2>
 
-        
-        <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
+        <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+          {product.description}
+        </p>
 
-        
         <div className="mt-3 flex items-center space-x-2">
-          <span className="text-lg font-bold text-gray-900">${product.price.toFixed(2)}</span>
+          <span className="text-lg font-bold text-gray-900">
+            ${product.price.toFixed(2)}
+          </span>
           {product?.originalPrice && (
             <span className="text-sm text-gray-500 line-through">
               ${product.originalPrice.toFixed(2)}
@@ -90,10 +85,10 @@ const ProductCard = ({ product,addToCart }) => {
         <div className="mt-2">
           <span
             className={`text-sm font-medium ${
-              product.inStock ? 'text-green-600' : 'text-red-600'
+              product.inStock ? "text-green-600" : "text-red-600"
             }`}
           >
-            {product.inStock ? 'In Stock' : 'Out of Stock'}
+            {product.inStock ? "In Stock" : "Out of Stock"}
           </span>
         </div>
 
@@ -101,18 +96,17 @@ const ProductCard = ({ product,addToCart }) => {
         <button
           onClick={handleAddtoCart}
           className={`mt-4 w-full py-2 rounded-lg font-semibold text-white ${
-           product.inStock
-              ? 'bg-blue-600 hover:bg-blue-700'
-              : 'bg-gray-400 cursor-not-allowed'
+            product.inStock
+              ? "bg-blue-600 hover:bg-blue-700"
+              : "bg-gray-400 cursor-not-allowed"
           } transition-colors duration-200`}
           disabled={!product.inStock}
         >
-          {product.inStock ? 'Add to Cart' : 'Unavailable'}
+          {product.inStock ? "Add to Cart" : "Unavailable"}
         </button>
       </div>
     </div>
   );
 };
-
 
 export default ProductCard;

@@ -1,41 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import Loading from "../common/Loading";
 
-const ProductOverview = ({ addToCart }) => {
-  const { id } = useParams(); 
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const ProductOverview = ({product, loading, error, addToCart }) => {
+ 
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(`http://localhost:3001/products/${id}`);
-        setProduct(response.data);
-      } catch (err) {
-        setError("Failed to load product");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (id) fetchProduct();
-  }, [id]);
-
-  if (loading) return <div className="p-8 text-center">Loading...</div>;
+  if (loading) return <Loading/>;
   if (error) return <div className="p-8 text-center text-red-600">{error}</div>;
   if (!product) return <div className="p-8 text-center">Product not found</div>;
 
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : 0;
-
-  const handleAdd = () => {
-    if (product.inStock) addToCart(product.id);
-  };
 
   return (
     <div className="max-w-5xl mx-auto p-5 bg-white rounded-lg shadow-lg">
@@ -50,11 +23,7 @@ const ProductOverview = ({ addToCart }) => {
             src={product.imageUrl}
             alt={product.name}
           />
-          {discount > 0 && (
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-sm font-semibold px-3 py-1 rounded">
-              {discount}% OFF
-            </span>
-          )}
+          
         </div>
 
         <div>
@@ -114,7 +83,7 @@ const ProductOverview = ({ addToCart }) => {
           </div>
 
           <button
-            onClick={handleAdd}
+            onClick={addToCart}
             className={`mt-8 w-full py-3 rounded-lg font-semibold text-white transition-colors duration-200 ${
               product.inStock ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-400 cursor-not-allowed"
             }`}

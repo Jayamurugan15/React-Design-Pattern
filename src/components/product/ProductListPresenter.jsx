@@ -1,5 +1,6 @@
 import ProductCard from "./ProductCard"
-import Loading from "./Loading"
+import Loading from "../common/Loading"
+
 const ProductListPresenter = ({products,error,loading,addToCart}) => {
 
   if(error){
@@ -7,17 +8,21 @@ const ProductListPresenter = ({products,error,loading,addToCart}) => {
   }
   
   return (
-   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-2">
+    <>
+    
+     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-5">
       {products?.map((product) => (
         <ProductCard key={product.id} product={product} addToCart={addToCart} />
       ))}
+    </div>
 
-      {loading && (
-        <div className="col-span-full text-center">
+    <div className=" w-full h-screen flex items-center justify-center">
+       {loading && (
           <Loading />
-        </div>
       )}
     </div>
+    </>
+  
   )
 }
 
