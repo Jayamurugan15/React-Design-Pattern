@@ -2,6 +2,8 @@ import React from 'react';
 import toast from 'react-hot-toast';
 
 const CartItemRow = ({ item, removeCart, updateQuantity }) => {
+  console.log("Hola",typeof(item),item);
+  
   return (
     <div className="flex items-center gap-4 py-4 border-b last:border-b-0">
       <img
@@ -35,7 +37,6 @@ const CartItemRow = ({ item, removeCart, updateQuantity }) => {
         <button
           onClick={() => {
             removeCart(item.id);
-            toast.success("Removed!");
           }}
           className="text-red-500 text-sm hover:underline"
         >

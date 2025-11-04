@@ -3,6 +3,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  
   const navigate = useNavigate();
 
   return (

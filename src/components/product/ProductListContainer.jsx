@@ -94,7 +94,7 @@ const ProductListContainer = ({productId=null}) => {
   const product = id ? products[0] : null;
   return (
     <>
-      <NavBar/>
+      
       <div className="">
         {currentPath === (`/products/${id}`) ? (
         <ProductOverview

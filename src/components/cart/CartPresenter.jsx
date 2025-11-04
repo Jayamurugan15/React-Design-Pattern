@@ -2,9 +2,10 @@ import React from 'react';
 import CartItemRow from './CartItemRow';
 import CartSummaryTotal from './CartSummaryTotal';
 
-const CartPresenter = ({ cartdetails, removeCart, updateQuantity }) => {
+const CartPresenter = ({ cartItems, removeCart, updateQuantity }) => {
+    console.log(">>>>>>>>>>>>>>>>>>>>>",cartItems);
     
-  if (cartdetails.length === 0) {
+  if (cartItems.length === 0) {
     return (
       <div className="max-w-4xl mx-auto p-8 text-center">
         <h2 className="text-3xl font-bold mb-4">Your Cart is Empty</h2>
@@ -18,14 +19,14 @@ const CartPresenter = ({ cartdetails, removeCart, updateQuantity }) => {
     );
   }
 
-  const total = cartdetails.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Your Cart ({cartdetails.length})</h1>
+      <h1 className="text-3xl font-bold mb-6">Your Cart ({cartItems.length})</h1>
 
       <div className="bg-white rounded-lg shadow-lg p-6 space-y-6">
-        {cartdetails.map((item) => (
+        {cartItems.map((item) => (
           <CartItemRow
             key={item.id}
             item={item}

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import CartPresenter from "./CartPresenter";
-import NavBar from "../common/NavBar";
 
 const CartContainer = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -56,10 +55,10 @@ const CartContainer = ({ children }) => {
       const existing = cartItems.find((i) => i.productId === id);
 
       if (existing) {
-        await axios.put(`http://localhost:3001/cart/${existing.id}`, {
-          ...existing,
-          quantity: existing.quantity + 1,
-        });
+       await axios.put(`http://localhost:3001/cart/${existing.id}`, {
+    ...existing,
+    quantity: existing.quantity + 1,
+  });
       } else {
         await axios.post("http://localhost:3001/cart", {
           productId: id,
@@ -104,11 +103,11 @@ const CartContainer = ({ children }) => {
 
   return (
     <>
-      <NavBar />
       <CartPresenter
-       cartdetails={cartdetails}
-      removeCart={removeFromCart}
-      updateQuantity={updateQuantity}
+        cartItems={cartdetails}
+       
+        removeCart={removeFromCart}
+        updateQuantity={updateQuantity}
       />
     </>
   );
