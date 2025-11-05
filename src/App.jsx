@@ -11,7 +11,7 @@ function App() {
       <Toaster position="top-center" />
      
       <BrowserRouter>
-      <NavBar/>
+      
         <Routes>
           <Route path="/" element={<ProductListContainer />} />
           <Route path="/products/:id" element={<ProductListContainer />} />

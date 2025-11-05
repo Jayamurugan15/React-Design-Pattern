@@ -33,11 +33,11 @@ const ProductOverview = ({product, loading, error, addToCart }) => {
 
           <div className="mt-6 flex items-center space-x-3">
             <span className="text-2xl font-bold text-gray-900">
-              ${product.price.toFixed(2)}
+               ₹{product.price.toFixed(2)}
             </span>
             {product.originalPrice && (
               <span className="text-lg text-gray-500 line-through">
-                ${product.originalPrice.toFixed(2)}
+                 ₹{product.originalPrice.toFixed(2)}
               </span>
             )}
           </div>

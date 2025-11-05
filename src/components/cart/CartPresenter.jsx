@@ -3,11 +3,11 @@ import CartItemRow from './CartItemRow';
 import CartSummaryTotal from './CartSummaryTotal';
 
 const CartPresenter = ({ cartItems, removeCart, updateQuantity }) => {
-    console.log(">>>>>>>>>>>>>>>>>>>>>",cartItems);
+     console.log(">>>>>>>>>>>>>>>>>>>>>",typeof(cartItems),cartItems);
     
   if (cartItems.length === 0) {
     return (
-      <div className="max-w-4xl mx-auto p-8 text-center">
+      <div className="max-w-4xl h-screen flex flex-col  items-center justify-center  mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">Your Cart is Empty</h2>
         <button
           onClick={() => window.history.back()}

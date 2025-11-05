@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import CartPresenter from "./CartPresenter";
+import NavBar from "../common/NavBar";
 
 const CartContainer = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -40,7 +41,8 @@ const CartContainer = ({ children }) => {
         })
         .filter(Boolean);
 
-      setCartdetails(enriched);
+      setCartdetails(cartRes.data);
+      
       setCartItems(cartRes.data);
     } catch (err) {
       toast.error("Failed to enrich cart");
@@ -103,6 +105,7 @@ const CartContainer = ({ children }) => {
 
   return (
     <>
+    <NavBar cartdetails={cartdetails}/>
       <CartPresenter
         cartItems={cartdetails}
        

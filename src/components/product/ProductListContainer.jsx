@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 import toast from "react-hot-toast";
-import Cart from "../cart/CartItemRow";
+
 
 const ProductListContainer = ({productId=null}) => {
   const [products, setProducts] = useState([]);
@@ -51,9 +51,11 @@ const ProductListContainer = ({productId=null}) => {
  
  const addToCart = async ({ productId, quantity = 1 }) => {
   try {
-    // const product = products.find(p => p.id === productId);
-    // if (!product) return toast.error("Product not found");
-
+    
+    const cartRes = await axios.get('http://localhost:3001/cart');
+    if(cartRes){
+      setCartItems(cartRes.data)
+    }    
     const existing = cartItems.find(i => i.productId === productId);
 
     if (existing) {
@@ -96,6 +98,7 @@ const ProductListContainer = ({productId=null}) => {
     <>
       
       <div className="">
+        <NavBar/>
         {currentPath === (`/products/${id}`) ? (
         <ProductOverview
           product={product}
@@ -108,7 +111,7 @@ const ProductListContainer = ({productId=null}) => {
           products={products}
           loading={loading}
           error={error}
-          addToCart={()=>addToCart(product.id)}
+          addToCart={addToCart}
         />
       )}
       </div>

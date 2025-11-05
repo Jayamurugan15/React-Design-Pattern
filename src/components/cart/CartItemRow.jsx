@@ -13,7 +13,7 @@ const CartItemRow = ({ item, removeCart, updateQuantity }) => {
       />
       <div className="flex-1">
         <h3 className="font-semibold">{item.name}</h3>
-        <p className="text-gray-600">${item.price.toFixed(2)} each</p>
+        <p className="text-gray-600"> ₹{item.price} each</p>
       </div>
 
       <div className="flex items-center gap-2">
@@ -33,7 +33,7 @@ const CartItemRow = ({ item, removeCart, updateQuantity }) => {
       </div>
 
       <div className="text-right">
-        <p className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+        <p className="font-bold"> ₹{(item.price * item.quantity)}</p>
         <button
           onClick={() => {
             removeCart(item.id);

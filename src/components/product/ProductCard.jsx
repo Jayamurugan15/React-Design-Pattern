@@ -55,11 +55,11 @@ const ProductCard = ({ product, addToCart }) => {
 
         <div className="mt-3 flex items-center space-x-2">
           <span className="text-lg font-bold text-gray-900">
-            ${product.price.toFixed(2)}
+             ₹{product.price.toFixed(2)}
           </span>
           {product?.originalPrice && (
             <span className="text-sm text-gray-500 line-through">
-              ${product.originalPrice.toFixed(2)}
+               ₹{product.originalPrice.toFixed(2)}
             </span>
           )}
         </div>
