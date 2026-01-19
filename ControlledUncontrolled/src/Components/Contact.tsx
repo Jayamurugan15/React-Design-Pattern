@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Contact = () => {
+
+  const [formData , setFormData] = useState({name: "", email:"",phone:"",message:""});
+
+  const handlechange = (e) => {
+    e.preventDefault();
+    const {name,value} = e.target;
+    setFormData({
+      ...formData, [name]:value
+    })
+  }
+
+  const handleSubmit = () => {
+    console.log(formData);
+    setFormData({name:"",email:"",phone:"",message:""})
+  }
+
   return (
     <>
       
@@ -8,28 +24,43 @@ const Contact = () => {
           <div className="flex flex-wrap justify-center mt-5">
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div className="rounded-lg bg-white p-8 shadow-lg sm:p-12">
-                <form>
-                  <ContactInputBox
+                <h1 className="text-center text-blue-500 font-bold mb-2">Controlled Component</h1>
+                <form
+                className="flex flex-col gap-3" 
+                onSubmit={handleSubmit}>
+                  <input
                     type="text"
                     name="name"
+                    value={formData.name}
+                    onChange={handlechange}
                     placeholder="Your Name"
+                    className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
-                  <ContactInputBox
+                  <input
+                    value={formData.email}
                     type="text"
                     name="email"
+                    onChange={handlechange}
                     placeholder="Your Email"
+                    className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
-                  <ContactInputBox
+                  <input
+                    value={formData.phone}
                     type="text"
                     name="phone"
+                    onChange={handlechange}
                     placeholder="Your Phone"
+                    className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
-                  <ContactTextArea
-                    row="6"
-                    placeholder="Your Message"
-                    name="details"
-                    defaultValue=""
-                  />
+                  <div className="mb-6">
+                    <textarea
+                      rows={2}
+                      onChange={handlechange}
+                      placeholder="Your Message"
+                      name="message"
+                      className="w-full resize-none rounded border border-stroke px-3.5  py-3 text-base text-body-color outline-none focus:border-2 focus:border-blue-500"
+                    />
+                  </div>
                   <div>
                     <button
                       type="submit"
@@ -49,34 +80,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
-  return (
-    <>
-      <div className="mb-6">
-        <textarea
-          rows={row}
-          placeholder={placeholder}
-          name={name}
-          className="w-full resize-none rounded border border-stroke px-3.5  py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
-          defaultValue={defaultValue}
-        />
-      </div>
-    </>
-  );
-};
-
-const ContactInputBox = ({ type, placeholder, name }) => {
-  return (
-    <>
-      <div className="mb-6">
-        <input
-          type={type}
-          placeholder={placeholder}
-          name={name}
-          className="w-full rounded border border-stroke px-3.5 py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
-        />
-      </div>
-    </>
-  );
-};
