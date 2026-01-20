@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const ControlledContactForm = () => {
 
-  const [formData , setFormData] = useState({name: "", email:"",phone:"",message:""});
+  const [formData , setFormData] = useState({fname: "",lname:"", email:"",phone:"",message:"",});
 
   const handlechange = (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ const ControlledContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    setFormData({name:"",email:"",phone:"",message:""})
+    setFormData({fname:"",lname:"",email:"",phone:"",message:""})
   }
 
   return (
@@ -23,7 +23,7 @@ const ControlledContactForm = () => {
       
         <div className="container">
           <div className="flex flex-wrap justify-center mt-5">
-            <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
+            <div className="w-full px-4">
               <div className="rounded-lg bg-white p-8 shadow-lg sm:p-12">
                 <h1 className="text-center text-blue-500 font-bold mb-2">Controlled Component</h1>
                 <form
@@ -31,10 +31,18 @@ const ControlledContactForm = () => {
                 onSubmit={handleSubmit}>
                   <input
                     type="text"
-                    name="name"
-                    value={formData.name}
+                    name="firstname"
+                    value={formData.fname}
                     onChange={handlechange}
-                    placeholder="Your Name"
+                    placeholder="Your First Name"
+                    className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
+                  />
+                  <input
+                    type="text"
+                    name="lastname"
+                    value={formData.lname}
+                    onChange={handlechange}
+                    placeholder="Your Last Name"
                     className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
                   <input

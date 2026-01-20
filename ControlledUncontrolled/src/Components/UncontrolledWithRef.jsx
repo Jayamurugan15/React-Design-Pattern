@@ -25,13 +25,13 @@ const UncontrolledWithRef = ( ) => {
           return
         }
 
-        if(!/^\d{10}$/.test(phone)){
-          phoneRef.current.focus();
+        if(!email.includes("@")){
+          emailRef.current.focus();
           return;
         }
 
-        if(!email.includes("@")){
-          emailRef.current.focus();
+        if(!/^\d{10}$/.test(phone)){
+          phoneRef.current.focus();
           return;
         }
 
@@ -46,9 +46,9 @@ const UncontrolledWithRef = ( ) => {
   return (
      <div className="container">
           <div className="flex flex-wrap justify-center mt-5">
-            <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
+            <div className="w-full px-4">
               <div className="rounded-lg bg-white p-8 shadow-lg sm:p-12">
-                <h1 className="text-center text-red-500 font-bold mb-4">UnControlled Component</h1>
+                <h1 className="text-center text-red-500 font-bold mb-4">UnControlled Component with Ref</h1>
                 <form
                 className="flex flex-col gap-3" 
                 onSubmit={handleSubmit}>
@@ -60,9 +60,9 @@ const UncontrolledWithRef = ( ) => {
                     className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
                   <input
-                    ref={emailRef}
                     type="email"
                     name="email"
+                    ref={emailRef}
                     onChange={handlechange}
                     placeholder="Your Email"
                     className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"

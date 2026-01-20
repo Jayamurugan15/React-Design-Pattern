@@ -12,7 +12,7 @@ const UncontrolledWithoutRef = () => {
   return (
     <div className="container">
           <div className="flex flex-wrap justify-center mt-5">
-            <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
+            <div className="w-full px-4 ">
               <div className="rounded-lg bg-white p-8 shadow-lg sm:p-12">
                 <h1 className="text-center text-green-500 font-bold mb-4">UnControlled Component Without Ref</h1>
                 <form
