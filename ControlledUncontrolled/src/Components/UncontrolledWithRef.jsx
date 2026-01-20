@@ -1,53 +1,75 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from 'react'
 
-const Contact = () => {
+const UncontrolledWithRef = ( ) => {
 
-  const [formData , setFormData] = useState({name: "", email:"",phone:"",message:""});
+    const nameRef = useRef("");
+    const emailRef = useRef("");
+    const phoneRef = useRef("");
+    const messageRef =  useRef("");
+    
+      const handlechange = (e) => {
+        e.preventDefault();
+        
+      }
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
 
-  const handlechange = (e) => {
-    e.preventDefault();
-    const {name,value} = e.target;
-    setFormData({
-      ...formData, [name]:value
-    })
-  }
+        const name = nameRef.current.value;
+        const phone = phoneRef.current.value;
+        const email = emailRef.current.value;
+        const message = messageRef.current.value;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    setFormData({name:"",email:"",phone:"",message:""})
-  }
+        if(!name) {
+          nameRef.current.focus();
+          return
+        }
 
+        if(!/^\d{10}$/.test(phone)){
+          phoneRef.current.focus();
+          return;
+        }
+
+        if(!email.includes("@")){
+          emailRef.current.focus();
+          return;
+        }
+
+        if(!message){
+          messageRef.current.focus();
+          return;
+        }
+       
+
+        console.log("Form Submitted :", {name,email,phone,message})
+      }
   return (
-    <>
-      
-        <div className="container">
+     <div className="container">
           <div className="flex flex-wrap justify-center mt-5">
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div className="rounded-lg bg-white p-8 shadow-lg sm:p-12">
-                <h1 className="text-center text-blue-500 font-bold mb-2">Controlled Component</h1>
+                <h1 className="text-center text-red-500 font-bold mb-2">UnControlled Component</h1>
                 <form
                 className="flex flex-col gap-3" 
                 onSubmit={handleSubmit}>
                   <input
                     type="text"
                     name="name"
-                    value={formData.name}
-                    onChange={handlechange}
+                    ref={nameRef}
                     placeholder="Your Name"
                     className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
                   <input
-                    value={formData.email}
-                    type="text"
+                    ref={emailRef}
+                    type="email"
                     name="email"
                     onChange={handlechange}
                     placeholder="Your Email"
                     className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
                   <input
-                    value={formData.phone}
-                    type="text"
+                    ref={phoneRef}
+                    type="tel"
                     name="phone"
                     onChange={handlechange}
                     placeholder="Your Phone"
@@ -55,6 +77,7 @@ const Contact = () => {
                   />
                   <div className="mb-6">
                     <textarea
+                      ref={messageRef}
                       rows={2}
                       onChange={handlechange}
                       placeholder="Your Message"
@@ -76,8 +99,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-    </>
-  );
-};
+  )
+}
 
-export default Contact;
+export default UncontrolledWithRef
