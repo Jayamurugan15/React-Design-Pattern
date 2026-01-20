@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Contact from './Components/ControlledContactForm'
 import UncontrolledWithRef from './Components/UncontrolledWithRef'
+import UncontrolledWithoutRef from './Components/UncontrolledWithoutRef'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,7 +12,8 @@ function App() {
   return (
     <>
       {/* <Contact/> */}
-      <UncontrolledWithRef/>
+      {/* <UncontrolledWithRef/> */}
+      <UncontrolledWithoutRef/>
     </>
   )
 }
