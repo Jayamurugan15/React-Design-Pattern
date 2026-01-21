@@ -63,7 +63,6 @@ const UncontrolledWithRef = ( ) => {
                     type="email"
                     name="email"
                     ref={emailRef}
-                    onChange={handlechange}
                     placeholder="Your Email"
                     className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
@@ -71,7 +70,6 @@ const UncontrolledWithRef = ( ) => {
                     ref={phoneRef}
                     type="tel"
                     name="phone"
-                    onChange={handlechange}
                     placeholder="Your Phone"
                     className="w-full rounded border border-stroke px-3.5 py-3 text-base outline-none focus:border-2 focus:border-blue-500"
                   />
@@ -79,7 +77,6 @@ const UncontrolledWithRef = ( ) => {
                     <textarea
                       ref={messageRef}
                       rows={2}
-                      onChange={handlechange}
                       placeholder="Your Message"
                       name="message"
                       className="w-full resize-none rounded border border-stroke px-3.5  py-3 text-base text-body-color outline-none focus:border-2 focus:border-blue-500"

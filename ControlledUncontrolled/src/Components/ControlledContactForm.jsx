@@ -5,15 +5,11 @@ const ControlledContactForm = () => {
   const [formData , setFormData] = useState({fname: "",lname:"", email:"",phone:"",message:"",});
 
   const handlechange = (e) => {
-    e.preventDefault();
     const {name,value} = e.target;
-    setFormData({
-      ...formData, [name]:value
-    })
+    setFormData(prev => ({ ...prev, [name]: value }));
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     console.log(formData);
     setFormData({fname:"",lname:"",email:"",phone:"",message:""})
   }
@@ -31,7 +27,7 @@ const ControlledContactForm = () => {
                 onSubmit={handleSubmit}>
                   <input
                     type="text"
-                    name="firstname"
+                    name="fname"
                     value={formData.fname}
                     onChange={handlechange}
                     placeholder="Your First Name"
@@ -39,7 +35,7 @@ const ControlledContactForm = () => {
                   />
                   <input
                     type="text"
-                    name="lastname"
+                    name="lname"
                     value={formData.lname}
                     onChange={handlechange}
                     placeholder="Your Last Name"
@@ -64,6 +60,7 @@ const ControlledContactForm = () => {
                   <div className="mb-6">
                     <textarea
                       rows={2}
+                      value={formData.message}
                       onChange={handlechange}
                       placeholder="Your Message"
                       name="message"
