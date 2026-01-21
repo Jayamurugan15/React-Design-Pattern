@@ -6,18 +6,18 @@ const Modal = ({ children, isOpen, onClose }) => {
   return (
     // Backdrop
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-blue-100"
-      onClick={onClose} // click outside to close
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white"
+      onClick={onClose} // click outside to clos4
     >
       {/* Modal content card */}
       <div
-        className="relative w-full max-w-lg mx-4 bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden"
-        onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+        className="relative w-full max-w-lg mx-4 bg-white  rounded-xl shadow-2xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 text-xl font-bold focus:outline-none"
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800  text-xl font-bold cursor-pointer focus:outline-none"
           aria-label="Close modal"
         >
           ×
@@ -32,7 +32,7 @@ const Modal = ({ children, isOpen, onClose }) => {
 // Compound components
 function ModalHeader({ children, className = '' }) {
   return (
-    <div className={`px-6 py-5 border-b border-gray-200 dark:border-gray-700 text-xl font-semibold ${className}`}>
+    <div className={`px-6 py-5 border-b border-gray-200  text-xl font-semibold ${className}`}>
       {children}
     </div>
   );
@@ -48,7 +48,7 @@ function ModalBody({ children, className = '' }) {
 
 function ModalFooter({ children, className = '' }) {
   return (
-    <div className={`px-6 py-5 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3 ${className}`}>
+    <div className={`px-6 py-5 border-t border-gray-200  flex justify-end gap-3 ${className}`}>
       {children}
     </div>
   );
