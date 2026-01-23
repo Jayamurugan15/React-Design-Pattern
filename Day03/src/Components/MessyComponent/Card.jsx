@@ -46,7 +46,7 @@ const Card = ({
                 </div>
 
                 {openToWork && (
-                  <div className="flex items-center gap-2 bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-sm font-medium border border-green-200 self-start sm:self-center">
+                  <div className="flex items-center gap-2 bg-green-50 text-green-700 px-4 py-1 rounded-full text-sm font-medium border border-green-200 self-start sm:self-center">
                     <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></div>
                     Open to Work
                   </div>
@@ -87,37 +87,37 @@ const Card = ({
             </div>
 
             {/* Right column - Metadata + Skills */}
-            <div className="mt-8 md:mt-0 md:w-80 lg:w-96 flex flex-col gap-8">
+            <div className="mt-8  md:mt-20 md:w-80 lg:w-96 flex flex-col gap-8">
               {/* Key details - cleaner layout */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 gap-5 md:gap-6 text-sm">
-                <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">
-                    Location
-                  </p>
-                  <p className="font-medium text-gray-900 mt-0.5">{location}</p>
-                </div>
-
-                <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">
-                    Current Role
-                  </p>
-                  <p className="font-medium text-gray-900 mt-0.5">{role}</p>
-                </div>
-
-                <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">
-                    LinkedIn
-                  </p>
-                  <a
-                    href={LinkedIn?.startsWith("http") ? LinkedIn : `https://${LinkedIn}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-indigo-600 hover:text-indigo-800 hover:underline mt-0.5 block truncate"
-                  >
-                    {LinkedIn?.replace(/^https?:\/\//, "") || "Not provided"}
-                  </a>
-                </div>
-              </div>
+              <div
+      className={`grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm `}
+    >
+      <div>
+        <p className="text-xs text-gray-500 uppercase tracking-wide">
+          Location
+        </p>
+        <p className="font-medium text-gray-900 mt-0.5">{location}</p>
+      </div>
+      <div>
+        <p className="text-xs text-gray-500 uppercase tracking-wide">
+          Current Role
+        </p>
+        <p className="font-medium text-gray-900 mt-0.5">{role}</p>
+      </div>
+      <div>
+        <p className="text-xs text-gray-500 uppercase tracking-wide">
+          LinkedIn
+        </p>
+        <a
+          href={LinkedIn?.startsWith("http") ? LinkedIn : `https://${LinkedIn}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-indigo-600 hover:underline mt-0.5 block truncate"
+        >
+          {LinkedIn ? LinkedIn.replace(/^https?:\/\//, "") : "—"}
+        </a>
+      </div>
+    </div>
 
               {/* Skills */}
               {skills.length > 0 && (

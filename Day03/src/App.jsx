@@ -1,29 +1,51 @@
 import { useState } from "react";
-import Modal from "./Components/Modal";
 import ModalContainer from "./Components/ModalContainer";
-import Card from "./Components/MessyComponent/Card";
+import CardContainer from "./Components/PatternComponent/CardContainer";
+import MessyCardContainer from "./Components/MessyComponent/MessyCardContainer";
 
 function App() {
-  
+  const [activeTab, setActiveTab] = useState('Modal')
+
+  const tabs = [
+    { id: 'Modal', label: 'Modal', component: <ModalContainer /> },
+    { id: 'Messy', label: 'Without Pattern', component: <MessyCardContainer /> },
+    { id: 'pattern', label: ' With Pattern', component: <CardContainer/> },
+  ]
 
   return (
     <>
-      {/* <ModalContainer/> */}
-      <Card
-      name={"Jayamurugan"}
-      designation={"Web Developer"}
-      experience={"1"}
-      projects={8}
-      ctc={"2"}
-      about={`Web Developer skilled in building responsive, component-based web applications using React.js, Redux Toolkit,
-      JavaScript (ES6+),TypeScript and Tailwind CSS. Proficient in translating UI/UX designs into clean, maintainable code with
-      seamless API integrations. Continuously enhancing technical expertise through real-world project development`}
-      LinkedIn={"https://www.linkedin.com/in/jayamurugans/"}
-      location={"Chennai"}
-      role={"Web Developer @ Looperex"}
-      openToWork={true}
-      skills={["Next.js","TypeScript","Javascript","React.js","Redux","Node.js","Express.js","Tailwindcss"]}
-      image={"https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400"}/>
+      <div className="min-h-screen bg-gray-50 py-10 px-4">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+          Compound Component Pattern
+        </h1>
+
+        {/* Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8 border-b border-gray-200">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`
+                px-5 py-3 font-medium rounded-t-lg transition-all duration-200
+                ${
+                  activeTab === tab.id
+                    ? 'bg-white text-blue-600 border border-b-0 border-gray-200 shadow-sm -mb-px'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/60'
+                }
+              `}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content */}
+        <div >
+          {tabs.find((tab) => tab.id === activeTab)?.component}
+        </div>
+      </div>
+    </div>
     </>
   );
 }
