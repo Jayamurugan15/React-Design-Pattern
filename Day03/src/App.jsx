@@ -2,11 +2,12 @@ import { useState } from "react";
 import ModalContainer from "./Components/ModalContainer";
 import CardContainer from "./Components/PatternComponent/CardContainer";
 import MessyCardContainer from "./Components/MessyComponent/MessyCardContainer";
+import Tab from "./Components/Tab";
 
 function App() {
   const [activeTab, setActiveTab] = useState('Modal')
 
-  const tabs = [
+  const Tab = [
     { id: 'Modal', label: 'Modal', component: <ModalContainer /> },
     { id: 'Messy', label: 'Without Pattern', component: <MessyCardContainer /> },
     { id: 'pattern', label: ' With Pattern', component: <CardContainer/> },
@@ -20,9 +21,9 @@ function App() {
           Compound Component Pattern
         </h1>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8 border-b border-gray-200">
-          {tabs.map((tab) => (
+        {/* Tab */}
+        {/* <div className="flex flex-wrap justify-center gap-2 mb-8 border-b border-gray-200">
+          {Tab.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
@@ -38,12 +39,32 @@ function App() {
               {tab.label}
             </button>
           ))}
-        </div>
+        </div> */}
 
         {/* Tab Content */}
-        <div >
-          {tabs.find((tab) => tab.id === activeTab)?.component}
-        </div>
+        {/* <div >
+          {Tab.find((tab) => tab.id === activeTab)?.component}
+        </div> */}
+        <Tab defaultValue="Modal">
+          <Tab.List>
+            <Tab.Trigger value="Modal">Modal</Tab.Trigger>
+            <Tab.Trigger value="Messy">Without Pattern</Tab.Trigger>
+            <Tab.Trigger value="pattern">With Pattern</Tab.Trigger>
+          </Tab.List>
+
+          <Tab.Content value="Modal">
+            <ModalContainer />
+          </Tab.Content>
+
+          <Tab.Content value="Messy">
+            <MessyCardContainer />
+          </Tab.Content>
+
+          <Tab.Content value="pattern">
+            <CardContainer />
+          </Tab.Content>
+        </Tab>
+
       </div>
     </div>
     </>
