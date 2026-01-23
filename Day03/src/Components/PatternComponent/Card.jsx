@@ -141,7 +141,7 @@ function CardSkills({ skills = [], className = "" }) {
   );
 }
 
-function CardActions({ className = "" }) {
+function CardFooter({ className = "" }) {
   return (
     <div
       className={`px-6 md:px-10 py-6 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row gap-4 ${className}`}
@@ -163,6 +163,6 @@ Card.QuickStats = CardQuickStats;
 Card.About = CardAbout;
 Card.Metadata = CardMetadata;
 Card.Skills = CardSkills;
-Card.Actions = CardActions;
+Card.Footer = CardFooter;
 
 export default Card;

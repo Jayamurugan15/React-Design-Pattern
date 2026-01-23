@@ -21,8 +21,8 @@ const CardContainer = () => {
             <Card.QuickStats experience={"1"} projects={8} ctc={"2"} />
             <Card.About
               about={`Web Developer skilled in building responsive, component-based web applications using React.js, Redux Toolkit,
-      JavaScript (ES6+),TypeScript and Tailwind CSS. Proficient in translating UI/UX designs into clean, maintainable code with
-      seamless API integrations. Continuously enhancing technical expertise through real-world project development`}
+              JavaScript (ES6+),TypeScript and Tailwind CSS. Proficient in translating UI/UX designs into clean, maintainable code with
+              seamless API integrations. Continuously enhancing technical expertise through real-world project development`}
             />
           </div>
 
@@ -48,7 +48,7 @@ const CardContainer = () => {
           </div>
         </Card.Body>
 
-        <Card.Actions />
+        <Card.Footer />
       </Card>
     </div>
     </div>
