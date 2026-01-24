@@ -5,13 +5,6 @@ import MessyCardContainer from "./Components/MessyComponent/MessyCardContainer";
 import Tab from "./Components/Tab";
 
 function App() {
-  const [activeTab, setActiveTab] = useState('Modal')
-
-  const Tab = [
-    { id: 'Modal', label: 'Modal', component: <ModalContainer /> },
-    { id: 'Messy', label: 'Without Pattern', component: <MessyCardContainer /> },
-    { id: 'pattern', label: ' With Pattern', component: <CardContainer/> },
-  ]
 
   return (
     <>
@@ -20,31 +13,6 @@ function App() {
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Compound Component Pattern
         </h1>
-
-        {/* Tab */}
-        {/* <div className="flex flex-wrap justify-center gap-2 mb-8 border-b border-gray-200">
-          {Tab.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`
-                px-5 py-3 font-medium rounded-t-lg transition-all duration-200
-                ${
-                  activeTab === tab.id
-                    ? 'bg-white text-blue-600 border border-b-0 border-gray-200 shadow-sm -mb-px'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/60'
-                }
-              `}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div> */}
-
-        {/* Tab Content */}
-        {/* <div >
-          {Tab.find((tab) => tab.id === activeTab)?.component}
-        </div> */}
         <Tab defaultValue="Modal">
           <Tab.List>
             <Tab.Trigger value="Modal">Modal</Tab.Trigger>

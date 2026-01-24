@@ -146,10 +146,10 @@ function CardFooter({ className = "" }) {
     <div
       className={`px-6 md:px-10 py-6 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row gap-4 ${className}`}
     >
-      <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-xl transition-colors">
+      <button onClick={()=>alert("Opening Profile...")} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-xl transition-colors cursor-pointer">
         View Full Profile
       </button>
-      <button className="flex-1 border border-gray-300 hover:bg-gray-100 font-medium py-3 px-6 rounded-xl transition-colors">
+      <button onClick={()=>alert("Saving Candidates....")} className="flex-1 border border-gray-300 hover:bg-gray-100 font-medium py-3 px-6 rounded-xl transition-colors cursor-pointer">
         Save Candidate
       </button>
     </div>

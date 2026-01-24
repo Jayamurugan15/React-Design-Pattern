@@ -1,12 +1,11 @@
 import React, {
   useState,
   Children,
-  defaultValue,
   isValidElement,
   cloneElement,
 } from "react";
 
-const Tab = ({ children }) => {
+const Tab = ({ children,defaultValue }) => {
   const [activeTab, setActiveTab] = useState(defaultValue);
 
   const enchanceChildren = Children.map(children, (child) => {
@@ -52,6 +51,7 @@ function TabTrigger({value,children,activeTab,setActiveTab}){
 
     return (
         <button
+        type="button"
         role="tab"
         aria-selected={isActiveTab}
         onClick={()=>setActiveTab(value)}
@@ -66,12 +66,12 @@ function TabTrigger({value,children,activeTab,setActiveTab}){
 
 function TabContent ({value,children,activeTab}){
     if(activeTab !== value) return null ;
-    return <div role="tabpannel">{children}</div> 
+    return <div role="tabpanel">{children}</div> 
 }
 
 
-TabList.List = TabList;
+Tab.List = TabList;
 Tab.Trigger = TabTrigger;
-Tab.Content = TabContent;
+Tab.Content = TabContent;   
 
 export default Tab;

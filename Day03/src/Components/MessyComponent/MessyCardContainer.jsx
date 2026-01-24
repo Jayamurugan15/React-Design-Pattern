@@ -16,7 +16,7 @@ const MessyCardContainer = () => {
       LinkedIn={"https://www.linkedin.com/in/jayamurugans/"}
       location={"Chennai"}
       role={"Web Developer @ Looperex"}
-      openToWork={true}
+      openToWork={false}
       skills={["Next.js","TypeScript","Javascript","React.js","Redux","Node.js","Express.js","Tailwindcss"]}
       image={"https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400"}/>
     </div>
