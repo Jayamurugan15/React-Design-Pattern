@@ -57,7 +57,7 @@ function TabTrigger({value,children,activeTab,setActiveTab}){
         onClick={()=>setActiveTab(value)}
         className={`px-5 py-3 font-medium rounded-t-lg transition-all duration-300
         ${ isActiveTab ? "bg-white text-blue-600 border border-b-0 border-gray-200 shadow-sm -mb-px" 
-        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/60"}`}>
+        : "text-gray-600 hover:text-gray-900 hover:bg-gray-200"}`}>
             {children}
         </button>
     )
