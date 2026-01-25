@@ -1,23 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import AddtoCart from "../cart/AddtoCart";
 
-const ProductCard = ({ product, addToCart }) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    console.log("Product Id from click:", product.id);
-
-    navigate(`/products/${product.id}`);
-  };
-
-  const handleAddtoCart = (e) => {
-    e.stopPropagation();
-    addToCart(product.id);
-  };
+const ProductCard = ({ product,addToCart }) => {
 
   return (
-    <div
-      onClick={handleClick}
-      className="max-w-xs rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300"
+    <div className="max-w-xs rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300"
     >
       <div className="relative">
         <img
@@ -77,17 +63,7 @@ const ProductCard = ({ product, addToCart }) => {
         </div>
 
         {/* Call to Action */}
-        <button
-          onClick={handleAddtoCart}
-          className={`mt-4 w-full py-2 rounded-lg font-semibold text-white cursor-pointer ${
-            product.inStock
-              ? "bg-blue-600 hover:bg-blue-700"
-              : "bg-gray-400 cursor-not-allowed"
-          } transition-colors duration-200`}
-          disabled={!product.inStock}
-        >
-          {product.inStock ? "Add to Cart" : "Unavailable"}
-        </button>
+        <AddtoCart addToCart={addToCart} product={product}/>
       </div>
     </div>
   );

@@ -10,18 +10,6 @@ const CartContainer = ({ children }) => {
   const [cartdetails, setCartdetails] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Fetch raw cart
-  const fetchCart = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get("http://localhost:3001/cart");
-      setCartItems(res.data);
-    } catch (err) {
-      toast.error("Failed to load cart");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   // Enrich cart with product details
   const enrichCart = async () => {
@@ -51,35 +39,35 @@ const CartContainer = ({ children }) => {
     }
   };
 
-  const addToCart = async (product) => {
-    const { id, price, name, imageUrl } = product;
-    try {
-      const existing = cartItems.find((i) => i.productId === id);
+  // const addToCart = async (product) => {
+  //   const { id, price, name, imageUrl } = product;
+  //   try {
+  //     const existing = cartItems.find((i) => i.productId === id);
 
-      if (existing) {
-       await axios.put(`http://localhost:3001/cart/${existing.id}`, {
-    ...existing,
-    quantity: existing.quantity + 1,
-  });
-      } else {
-        await axios.post("http://localhost:3001/cart", {
-          productId: id,
-          quantity: 1,
-          addedAt: new Date().toISOString(),
-        });
-      }
-      toast.success("Added to cart!");
-      enrichCart();
-    } catch (err) {
-      toast.error("Failed to add");
-    }
-  };
+  //     if (existing) {
+  //      await axios.put(`http://localhost:3001/cart/${existing.id}`, {
+  //   ...existing,
+  //   quantity: existing.quantity + 1,
+  //    });
+  //     } else {
+  //       await axios.post("http://localhost:3001/cart", {
+  //         productId: id,
+  //         quantity: 1,
+  //         addedAt: new Date().toISOString(),
+  //       });
+  //     }
+  //     toast.success("Added to cart!");
+  //     enrichCart();
+  //   } catch (err) {
+  //     toast.error("Failed to add");
+  //   }
+  // };
 
   const removeFromCart = async (itemId) => {
     try {
       await axios.delete(`http://localhost:3001/cart/${itemId}`);
-      toast.success("Removed!");
-      enrichCart();
+      toast.success(" Product Removed!");
+      fetchCart();
     } catch (err) {
       toast.error("Failed to remove");
     }
@@ -93,14 +81,14 @@ const CartContainer = ({ children }) => {
         ...item,
         quantity: newQty,
       });
-      enrichCart();
+      fetchCart();
     } catch (err) {
       toast.error("Update failed");
     }
   };
 
   useEffect(() => {
-    enrichCart();
+    //fetchCart();
   }, []);
 
   return (
@@ -108,7 +96,6 @@ const CartContainer = ({ children }) => {
     <NavBar cartdetails={cartdetails}/>
       <CartPresenter
         cartItems={cartdetails}
-       
         removeCart={removeFromCart}
         updateQuantity={updateQuantity}
       />

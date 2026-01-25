@@ -12,7 +12,7 @@ const ProductListPresenter = ({products,error,loading,addToCart}) => {
     
      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-5">
       {products?.map((product) => (
-        <ProductCard key={product.id} product={product} addToCart={addToCart} />
+        <ProductCard key={product.id} product={product} addToCart={addToCart}  />
       ))}
     </div>
 
