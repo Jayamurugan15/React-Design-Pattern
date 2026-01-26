@@ -50,8 +50,7 @@ const addToCart = async (product) => {
         imageUrl: product.imageUrl,
       });
     }
-
-    toast.success("Added to cart!");
+    toast.success("Added to cart! Done");
   } catch (err) {
     console.error(err);
     toast.error("Could not add to cart");

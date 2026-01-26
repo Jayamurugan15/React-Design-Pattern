@@ -7,61 +7,19 @@ import NavBar from "../common/NavBar";
 
 const CartContainer = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const [cartdetails, setCartdetails] = useState([]);
   const [loading, setLoading] = useState(false);
 
-
-  // Enrich cart with product details
-  const enrichCart = async () => {
+  const fetchCart = async () => {
     try {
-      setLoading(true);
-      const [cartRes, productsRes] = await Promise.all([
-        axios.get("http://localhost:3001/cart"),
-        axios.get("http://localhost:3001/products"),
-      ]);
-
-      const enriched = cartRes.data
-        .map((cartItem) => {
-          const product = productsRes.data.find(
-            (p) => p.id === Number(cartItem.productId)
-          );
-          return product ? { ...cartItem, ...product } : null;
-        })
-        .filter(Boolean);
-
-      setCartdetails(cartRes.data);
-      
-      setCartItems(cartRes.data);
-    } catch (err) {
-      toast.error("Failed to enrich cart");
-    } finally {
-      setLoading(false);
+      setLoading(true)
+      const res = await axios.get('http://localhost:3001/cart')
+      setCartItems(res.data || [])
+    } catch (error) {
+      console.log(error)
+    }finally{
+      setLoading(false)
     }
-  };
-
-  // const addToCart = async (product) => {
-  //   const { id, price, name, imageUrl } = product;
-  //   try {
-  //     const existing = cartItems.find((i) => i.productId === id);
-
-  //     if (existing) {
-  //      await axios.put(`http://localhost:3001/cart/${existing.id}`, {
-  //   ...existing,
-  //   quantity: existing.quantity + 1,
-  //    });
-  //     } else {
-  //       await axios.post("http://localhost:3001/cart", {
-  //         productId: id,
-  //         quantity: 1,
-  //         addedAt: new Date().toISOString(),
-  //       });
-  //     }
-  //     toast.success("Added to cart!");
-  //     enrichCart();
-  //   } catch (err) {
-  //     toast.error("Failed to add");
-  //   }
-  // };
+  }
 
   const removeFromCart = async (itemId) => {
     try {
@@ -88,16 +46,17 @@ const CartContainer = ({ children }) => {
   };
 
   useEffect(() => {
-    //fetchCart();
+    fetchCart();
   }, []);
 
   return (
     <>
-    <NavBar cartdetails={cartdetails}/>
+    <NavBar cartdetails={cartItems}/>
       <CartPresenter
-        cartItems={cartdetails}
+        cartItems={cartItems}
         removeCart={removeFromCart}
         updateQuantity={updateQuantity}
+        loading={loading}
       />
     </>
   );

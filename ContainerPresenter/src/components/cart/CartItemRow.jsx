@@ -1,15 +1,13 @@
-import React from 'react';
-import toast from 'react-hot-toast';
+import { MdDelete } from "react-icons/md";
 
 const CartItemRow = ({ item, removeCart, updateQuantity }) => {
-  console.log("Hola",typeof(item),item);
-  
+  const price = item.price
   return (
-    <div className="flex items-center gap-4 py-4 border-b last:border-b-0">
+    <div className="flex items-center gap-4 py-4 border-b border-gray-300 last:border-b-0">
       <img
         src={item.imageUrl || '/placeholder.jpg'}
         alt={item.name}
-        className="w-16 h-16 object-cover rounded"
+        className="w-20 h-20 object-cover rounded"
       />
       <div className="flex-1">
         <h3 className="font-semibold">{item.name}</h3>
@@ -19,28 +17,27 @@ const CartItemRow = ({ item, removeCart, updateQuantity }) => {
       <div className="flex items-center gap-2">
         <button
           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-          className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 text-lg"
+          className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 text-lg cursor-pointer"
         >
           -
         </button>
         <span className="w-12 text-center font-medium">{item.quantity}</span>
         <button
           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-          className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 text-lg"
+          className="w-8 h-8 bg-gray-200 rounded-full hover:bg-gray-300 text-lg cursor-pointer"
         >
           +
         </button>
       </div>
 
-      <div className="text-right">
-        <p className="font-bold"> ₹{(item.price * item.quantity)}</p>
+      <div className="p-2 ">
         <button
           onClick={() => {
             removeCart(item.id);
           }}
-          className="text-red-500 text-sm hover:underline"
+          className="text-red-500 cursor-pointer"
         >
-          Remove
+          <MdDelete size={22}/>
         </button>
       </div>
     </div>

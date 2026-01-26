@@ -12,7 +12,7 @@ const NavBar = ({cartdetails}) => {
         <h1 className="text-blue-700 font-medium text-2xl cursor-pointer" onClick={()=>navigate('/')}>Ecommerce</h1>
 
         <button onClick={()=>navigate('/cart')} className="relative hover:scale-110 cursor-pointer inline-flex">
-          <CiShoppingCart size={28} /> {cartdetails?.length > 0 && <span className="absolute right-1 text-sm text-white bg-blue-400 rounded-full">{cartdetails.length}</span>}
+          <CiShoppingCart size={30} /> {cartdetails?.length > 0 && <span className="absolute right-0 w-4 h-4 text-sm text-white bg-blue-400 rounded-full">{cartdetails.length}</span>}
         </button>
       </div>
     </nav>

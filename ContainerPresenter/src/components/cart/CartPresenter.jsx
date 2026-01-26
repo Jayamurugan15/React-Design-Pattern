@@ -1,10 +1,10 @@
 import React from 'react';
 import CartItemRow from './CartItemRow';
 import CartSummaryTotal from './CartSummaryTotal';
+import Loading from '../common/Loading';
 
-const CartPresenter = ({ cartItems, removeCart, updateQuantity }) => {
-     console.log(">>>>>>>>>>>>>>>>>>>>>",typeof(cartItems),cartItems);
-    
+const CartPresenter = ({ cartItems, removeCart, updateQuantity,loading }) => {
+  
   if (cartItems.length === 0) {
     return (
       <div className="max-w-4xl h-screen flex flex-col  items-center justify-center  mx-auto text-center">
@@ -15,6 +15,14 @@ const CartPresenter = ({ cartItems, removeCart, updateQuantity }) => {
         >
           Continue Shopping
         </button>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loading />
       </div>
     );
   }

@@ -4,17 +4,12 @@ import React from 'react';
 
 const AddtoCart = ({product,addToCart}) => {
     
-    // const addToCart = async () => {
-    // try {
-    //     await axios.post(`http://localhost:3001/cart/`,{productId:product.id, quatity:1});
-    //     toast.success(" Product Added To Cart!");
-    // } catch (err) {
-    //     toast.error("Failed Oops");
-    // }
-    //  };
+    const handleClick = async () => {
+        addToCart(product)
+     };
   return (
     <button
-          onClick={addToCart}
+          onClick={handleClick}
           className={`mt-4 w-full py-2 rounded-lg font-semibold text-white cursor-pointer ${
             product.inStock
               ? "bg-blue-600 hover:bg-blue-700"
