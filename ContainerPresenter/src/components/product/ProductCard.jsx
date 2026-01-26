@@ -62,7 +62,7 @@ const ProductCard = ({ product,addToCart }) => {
           </span>
         </div>
 
-        {/* Call to Action */}
+       
         <AddtoCart addToCart={addToCart} product={product}/>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 import axios from "axios";
 import NavBar from "../common/NavBar";
 import ProductListPresenter from "./ProductListPresenter";
@@ -56,6 +56,41 @@ const addToCart = async (product) => {
     toast.error("Could not add to cart");
   }
 };
+
+
+const displayedProducts = useMemo(() => {
+    let result = [...products];
+
+    // 1. Search
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase();
+      result = result.filter(p =>
+        p.name.toLowerCase().includes(term) ||
+        p.description?.toLowerCase().includes(term) ||
+        p.tags?.some(t => t.toLowerCase().includes(term))
+      );
+    }
+
+    // 2. Category filter
+    if (categoryFilter !== "all") {
+      result = result.filter(p => p.categoryId === categoryFilter);
+    }
+
+    // 3. Sort
+    result.sort((a, b) => {
+      switch (sortBy) {
+        case "price-low":   return a.price - b.price;
+        case "price-high":  return b.price - a.price;
+        case "rating":      return (b.rating || 0) - (a.rating || 0);
+        case "newest":
+          return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
+        case "name":
+        default:            return a.name.localeCompare(b.name);
+      }
+    });
+
+    return result;
+  }, [products, searchTerm, categoryFilter, sortBy]);
  
 
   useEffect(() => {
@@ -68,10 +103,16 @@ const addToCart = async (product) => {
       <div className="">
         <NavBar/>
         <ProductListPresenter
-          products={products}
+          products={displayedProducts}
           loading={loading}
           error={error}
           addToCart={addToCart}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          categoryFilter={categoryFilter}
+          onCategoryChange={setCategoryFilter}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
         />
       </div>
     </>
