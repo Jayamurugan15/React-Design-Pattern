@@ -1,16 +1,38 @@
-# React + Vite
+# Container-Presenter Pattern – Quick Notes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. **Container** (Smart component)  
+   - Handles **data** and **logic**  
+   - Talks to APIs (axios/fetch)  
+   - Manages state (useState, useEffect, etc.)  
+   - Makes decisions and business rules  
+   - **Does NOT** care about how things look  
+   - Usually has **very little or no JSX**  
+   - Only prepares data + callback functions and passes them down
 
-Currently, two official plugins are available:
+2. **Presenter** (Dumb / Presentational component)  
+   - **Only renders UI**  
+   - Receives everything via **props**  
+   - No application-level state (only local UI state like toggles if needed)  
+   - **No API calls**, **no business logic**, **no side effects**  
+   - Purely concerned with **how things look and feel**  
+   - Focuses on markup, styling, conditional rendering, mapping lists
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Why Use This Separation?
 
-## React Compiler
+- Easier to **understand** code at a glance  
+  (one file = data & logic, another = markup & styling)
+- **High reusability** — same presenter can work with different containers / data sources
+- **Better testability**  
+  - Presenters → easy snapshot / unit tests (just render with props)  
+  - Containers → integration tests with mocked data
+- True **separation of concerns**  
+  - Logic changes don't break UI  
+  - UI/styling changes don't touch business rules
+- Great for **teamwork**  
+  - Designers / frontend stylists → presenters  
+  - Logic / API / state developers → containers
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## One-line Summary
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Container** = "What data do we have and what happens when the user does something?"  
+**Presenter**  = "How should it look and be laid out on the screen?"
