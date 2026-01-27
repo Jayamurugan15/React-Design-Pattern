@@ -9,7 +9,6 @@ const SortFilterControls = ({
   categories = [], 
 }) => {
 
-  console.log(categoryFilter,">>>>>>")
   return (
     <div className="px-4 py-1 bg-white rounded-lg mb-6 flex flex-col md:flex-row md:justify-between gap-4 flex-wrap">
     

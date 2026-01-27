@@ -18,6 +18,7 @@ const ProductListContainer = ({ productId = null }) => {
   const [sortBy, setSortBy] = useState("name");
 
   const API_BASE = import.meta.env.VITE_API_BASE_URL;
+  console.log(API_BASE,">>>>>>>>>>>>>>")
 
   // Fetch all products
   const fetchProducts = async () => {

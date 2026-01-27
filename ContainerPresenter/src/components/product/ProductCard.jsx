@@ -20,7 +20,7 @@ const ProductCard = ({ product,addToCart }) => {
             {product.brand}
           </span>
           <div className="flex space-x-1">
-            {product.tags.slice(0, 2).map((tag, index) => (
+            {product.tags?.slice(0, 2)?.map((tag, index) => (
               <span
                 key={index}
                 className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
@@ -41,11 +41,11 @@ const ProductCard = ({ product,addToCart }) => {
 
         <div className="mt-3 flex items-center space-x-2">
           <span className="text-lg font-bold text-gray-900">
-             ₹{product.price.toFixed(2)}
+             ₹{product.price?.toFixed(2)}
           </span>
           {product?.originalPrice && (
             <span className="text-sm text-gray-500 line-through">
-               ₹{product.originalPrice.toFixed(2)}
+               ₹{product.originalPrice?.toFixed(2)}
             </span>
           )}
         </div>
