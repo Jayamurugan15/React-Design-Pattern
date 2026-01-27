@@ -12,7 +12,7 @@ const CartContainer = ({ children }) => {
   const fetchCart = async () => {
     try {
       setLoading(true)
-      const res = await axios.get('http://localhost:3001/cart')
+      const res = await axios.get(`${API_BASE}/cart`)
       setCartItems(res.data || [])
     } catch (error) {
       console.log(error)
@@ -23,7 +23,7 @@ const CartContainer = ({ children }) => {
 
   const removeFromCart = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:3001/cart/${itemId}`);
+      await axios.delete(`${API_BASE}/cart/${itemId}`);
       toast.success(" Product Removed!");
       fetchCart();
     } catch (err) {
@@ -35,7 +35,7 @@ const CartContainer = ({ children }) => {
     if (newQty < 1) return removeFromCart(itemId);
     try {
       const item = cartItems.find((i) => i.id === itemId);
-      await axios.put(`http://localhost:3001/cart/${itemId}`, {
+      await axios.put(`API_BASE/cart/${itemId}`, {
         ...item,
         quantity: newQty,
       });

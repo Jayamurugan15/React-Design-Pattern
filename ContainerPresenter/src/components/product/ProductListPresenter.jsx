@@ -30,8 +30,8 @@ const ProductListPresenter = ({
         onSortChange={onSortChange}
       />
      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-5 md:mx-14">
-      {products?.map((product) => (
-        <ProductCard key={product.id} product={product} addToCart={addToCart}  />
+      {products?.map((product,index) => (
+        <ProductCard key={index} product={product} addToCart={addToCart}  />
       ))}
     </div>
 
