@@ -18,7 +18,7 @@ const ProductListContainer = ({ productId = null }) => {
   const [sortBy, setSortBy] = useState("name");
 
   const API_BASE = import.meta.env.VITE_API_BASE_URL;
-  console.log(API_BASE,">>>>>>>>>>>>>>")
+
 
   // Fetch all products
   const fetchProducts = async () => {
@@ -34,7 +34,6 @@ const ProductListContainer = ({ productId = null }) => {
     }
   };
 
-  // ProductListContainer.jsx
   const addToCart = async (product) => {
     if (!product?.id || !product?.inStock) return;
 
@@ -48,7 +47,7 @@ const ProductListContainer = ({ productId = null }) => {
           quantity: existing.quantity + 1,
         });
       } else {
-        await axios.post("API_BASE/cart", {
+        await axios.post(`${API_BASE}/cart`, {
           productId: product.id,
           quantity: 1,
           name: product.name,
@@ -56,7 +55,7 @@ const ProductListContainer = ({ productId = null }) => {
           imageUrl: product.imageUrl,
         });
       }
-      toast.success("Added to cart! Done");
+      toast.success("Added to Cart");
     } catch (err) {
       console.error(err);
       toast.error("Could not add to cart");
@@ -108,7 +107,7 @@ const ProductListContainer = ({ productId = null }) => {
 
   return (
     <>
-      <div className="">
+      <div className="bg-gray-100">
         <NavBar />
         <ProductListPresenter
           products={displayedProducts}

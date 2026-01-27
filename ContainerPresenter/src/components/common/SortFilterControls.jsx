@@ -10,7 +10,7 @@ const SortFilterControls = ({
 }) => {
 
   return (
-    <div className="px-4 py-1 bg-white rounded-lg mb-6 flex flex-col md:flex-row md:justify-between gap-4 flex-wrap">
+    <div className="px-4 py-1 bg-gray-100 rounded-lg mb-6 flex flex-col md:flex-row md:justify-between gap-4 flex-wrap">
     
       <input
         type="text"
