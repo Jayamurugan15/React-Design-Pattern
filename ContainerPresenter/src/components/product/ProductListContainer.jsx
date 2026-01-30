@@ -22,7 +22,7 @@ const ProductListContainer = ({ productId = null }) => {
     try {
       setLoading(true);
       setError("");
-      const response = await axios.get(`${API_BASE}/products`);
+      const response = await axios.get(`${API_BASE}/api/products`);
       console.log(response.data,">>>>>>>>>")
       setProducts(response.data);
     } catch (err) {
@@ -36,12 +36,12 @@ const ProductListContainer = ({ productId = null }) => {
     if (!product?.id || !product?.inStock) return;
 
     try {
-      const { data: currentCart } = await axios.get(`${API_BASE}/cart`);
+      const { data: currentCart } = await axios.get(`${API_BASE}/api/cart`);
       const existing = currentCart.find(
         (item) => item.productId === product.id,
       );
       if (existing) {
-        await axios.patch(`${API_BASE}/cart/${existing.id}`, {
+        await axios.patch(`${API_BASE}/api/cart/${existing.id}`, {
           quantity: existing.quantity + 1,
         });
       } else {
