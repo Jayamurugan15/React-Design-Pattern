@@ -2,8 +2,6 @@ import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import NavBar from "../common/NavBar";
 import ProductListPresenter from "./ProductListPresenter";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 import toast from "react-hot-toast";
 
@@ -19,13 +17,13 @@ const ProductListContainer = ({ productId = null }) => {
 
   const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
-
   // Fetch all products
   const fetchProducts = async () => {
     try {
       setLoading(true);
       setError("");
       const response = await axios.get(`${API_BASE}/products`);
+      console.log(response.data,">>>>>>>>>")
       setProducts(response.data);
     } catch (err) {
       setError(err.message || "Failed to fetch products.");
