@@ -15,7 +15,7 @@ const ProductListContainer = ({ productId = null }) => {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortBy, setSortBy] = useState("name");
 
-  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE = https://backend-fake-api.vercel.app;
 
   // Fetch all products
   const fetchProducts = async () => {
