@@ -5,7 +5,7 @@ import UncontrolledWithRef from './Components/UncontrolledWithRef'
 import UncontrolledWithoutRef from './Components/UncontrolledWithoutRef'
 
 function App() {
-  const [activeTab, setActiveTab] = useState('uncontrolled-no-ref')
+  const [activeTab, setActiveTab] = useState('controlled')
 
   const tabs = [
     { id: 'controlled', label: 'Controlled Form', component: <Contact /> },
