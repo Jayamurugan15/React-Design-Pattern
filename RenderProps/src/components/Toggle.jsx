@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const Toggle = ({children,defaultValue=false}) => {
-  const [isOpen, setIsOpen] = useState(defaultValue);
+const Toggle = ({children}) => {
+  const [isOpen, setIsOpen] = useState(false)
   const open = ()=> setIsOpen(true);
   const close = ()=> setIsOpen(false);
   const toggle = ()=> setIsOpen((prev)=> !prev)
