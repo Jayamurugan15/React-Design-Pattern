@@ -1,11 +1,12 @@
 import React from "react";
 
-const ReportCard = ({ permissions = [] }) => {
+const ReportCard = ({ permissions }) => {
+    console.log(permissions,">>>>")
   if (!permissions.includes("REPORT")) return null;
 
   return (
     <div className="max-w-sm rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-      {permissions.includes("report") ? (
+      {permissions.includes("REPORT") ? (
         <>
           <h2 className="text-lg font-semibold text-gray-800">Reports</h2>
 

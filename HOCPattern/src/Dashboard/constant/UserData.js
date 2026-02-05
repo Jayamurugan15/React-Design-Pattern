@@ -15,13 +15,13 @@ export const usersData = [
     id: 3,
     name: "Name 3",
     role: "Manager",
-    permissions: ["READ", "REPORT"],
+    permissions: ["READ","REPORT"],
   },
   {
     id: 4,
     name: "Name 4",
     role: "Editor",
-    permissions: ["READ", "WRITE"],
+    permissions: ["READ","REPORT"],
   },
   {
     id: 5,

@@ -14,7 +14,7 @@ const AdminCard = ({ name, role }) => {
       </p>
 
       {/* Conditional UI */}
-      {isAdmin ? (
+      {isAdmin && (
         <div className="mt-4 rounded-lg bg-green-50 p-4">
           <h3 className="text-sm font-semibold text-green-700">
             Admin Panel
@@ -25,16 +25,7 @@ const AdminCard = ({ name, role }) => {
             <li>• System Settings</li>
           </ul>
         </div>
-      ) : (
-        <div className="mt-4 rounded-lg bg-red-50 p-4">
-          <h3 className="text-sm font-semibold text-red-700">
-            User Dashboard
-          </h3>
-          <p className="mt-2 text-sm text-red-600">
-            You have limited access. Contact admin for more permissions.
-          </p>
-        </div>
-      )}
+      ) }
     </div>
   );
 };
