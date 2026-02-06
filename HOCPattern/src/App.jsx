@@ -4,7 +4,7 @@ import UserProfile from "./Dashboard/UserProfile";
 import AdminCard from "./Dashboard/AdmiCard";
 import ReportCard from "./Dashboard/ReportCard";
 import withAccess from "./Dashboard/hoc/withRoleAccess";
-import { usersData } from "./Dashboard/constant/UserData";
+import { usersData } from "./constant/UserData";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(usersData[0]);
