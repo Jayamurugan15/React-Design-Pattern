@@ -1,16 +1,53 @@
-# React + Vite
+# React Custom Hooks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## What is a Custom Hook?
 
-Currently, two official plugins are available:
+A **Custom Hook** is a reusable JavaScript function in React that starts with `use` and allows you to extract and reuse stateful logic across multiple components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> Custom hooks help you share logic, not UI.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Why use Custom Hooks?
 
-## Expanding the ESLint configuration
+- **Reuse logic** across components
+- Keep components **clean and readable**
+- **Avoid code duplication**
+- Improve **project structure**
+- Follow **separation of concerns**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Instead of writing the same logic in multiple components, you write it once and reuse it.
+
+---
+
+## When to create a Custom Hook?
+
+Create a custom hook when:
+
+- The same logic is used in **multiple places**
+- Component becomes **too large**
+- Logic is **unrelated to UI**
+- You want **reusable state or side effects**
+
+### Common examples:
+
+- API calls (`useFetch`)
+- Local storage (`useLocalStorage`)
+- Clipboard (`useClipboard`)
+- Click outside detection (`useClickOutside`)
+- Dark mode / theme handling
+
+---
+
+## Naming Convention
+
+Custom hooks must:
+
+- Start with **`use`**
+- Use **camelCase**
+
+---
+
+## One-line Summary
+
+**Custom Hook = Reusable stateful logic for React components.**
