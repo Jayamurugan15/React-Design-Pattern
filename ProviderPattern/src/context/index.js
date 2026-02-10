@@ -2,4 +2,7 @@ import { createContext } from "react";
 
 const ThemeContext = createContext();
 
-export { ThemeContext };
+const AuthContext = createContext();
+
+export { ThemeContext,AuthContext };
+
