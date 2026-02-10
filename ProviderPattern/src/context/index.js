@@ -4,5 +4,7 @@ const ThemeContext = createContext();
 
 const AuthContext = createContext();
 
-export { ThemeContext,AuthContext };
+const LangContext = createContext();
+
+export { ThemeContext,AuthContext, LangContext };
 

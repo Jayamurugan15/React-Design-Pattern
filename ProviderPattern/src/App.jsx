@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useTheme } from "./hook/usetheme";
 import { useAuth } from "./hook/useAuth";
+import { useLanguage } from "./hook/useLanguage";
 
 function App() {
 
   const { theme, toggleTheme } = useTheme();
   const {user,login, logout} = useAuth();
+
+  const { language,translate,changeLanguage } = useLanguage()
 
   const [userData,setUserData] = useState("");
   const [error,setError] = useState("")
@@ -16,6 +19,10 @@ function App() {
     }
     login(userData);
     setUserData("");
+  }
+
+  const handleLanguage = (e) => {
+  set
   }
 
   return (
@@ -33,14 +40,14 @@ function App() {
     <h2 className="text-red-500 text-2xl font-bold">Provider Pattern</h2>
 
     <div className="flex items-center gap-4">
-      {user && <p className="font-medium">Hi, {user}</p>}
+      {user && <p className="font-medium">{translate("hi")}, {user}</p>}
 
       {user && (
         <button
           onClick={logout}
           className="px-3 py-1.5 bg-red-500 text-white rounded-md hover:bg-red-600"
         >
-          Logout
+          {translate("logout")}
         </button>
       )}
 
@@ -48,8 +55,17 @@ function App() {
         onClick={toggleTheme}
         className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
       >
-        Change Theme
+        {translate("theme")}
       </button>
+
+      <select
+      value={language}
+      className="text-black border border-gray-300 p-2 rounded-lg"
+       onChange={(e)=>changeLanguage(e.target.value)}>
+        <option value="en">English</option>
+        <option value="ta">தமிழ்</option>
+        <option value="ml">മലയാളം</option>
+      </select>
     </div>
   </nav>
 
@@ -63,18 +79,18 @@ function App() {
       }`}
     >
       <h3 className="text-xl font-semibold mb-4 text-center">
-        Login
+        {translate("login")}
       </h3>
 
       <div className="flex flex-col gap-2 mb-2">
         <input
         type="text"
-        placeholder="Enter your name"
+        placeholder={translate("note")}
         value={userData}
         onChange={(e) => setUserData(e.target.value)}
         className={`w-full border border-gray-300 rounded-md p-2.5 ${theme ? "text-black" : "text-white"}`}
       />
-      {error && <p className="text-red-400 ">{error}</p>}
+      {error && <p className="text-red-400 ">{translate("danger")}</p>}
       </div>
 
 
@@ -82,7 +98,7 @@ function App() {
         onClick={handleLogin}
         className="w-full bg-green-500 text-white py-2.5 rounded-md hover:bg-green-600"
       >
-        Login
+        {translate("login")}
       </button>
     </div>
       ) : (
@@ -92,10 +108,10 @@ function App() {
       }`}
     >
       <h2 className="text-2xl font-bold mb-2">
-        Welcome, {user} 👋
+       {translate("welcome")}, {user} 👋
       </h2>
       <p className="mb-4 opacity-80">
-        You are successfully logged in.
+       {translate("success")}.
       </p>
     </div>
       )
