@@ -3,18 +3,19 @@ import { AuthContext } from "../context";
 
 const AuthProvider = ({children}) => {
     const [user,setUser ]= useState(null)
-    const [isAuth,setIsAuth ] = useState(false);
 
-    const login = (username) = setUser(username);
+    const login = (userData) =>{
+        setUser(userData);
+    } 
 
-    const logout = () => setUser(null)
+    const logout = () => {
+        setUser(null);
+    }
     
-    useEffect(()=>{
-      setIsAuth(true)
-    },[user])
+ 
 
     return (
-        <AuthContext.Provider value={{isAuth,user,setUser,login,logout}}>
+        <AuthContext.Provider value={{user,login,logout}}>
             {children}
         </AuthContext.Provider>
     )
