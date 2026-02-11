@@ -1,12 +1,12 @@
 import { useState } from 'react'
-
+import Comment from './components/Comment'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
     <>
       <h1 className='text-blue-400'>Optimistic Pattern</h1>
+      <Comment/>
     </>
   )
 }
