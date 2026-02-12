@@ -4,10 +4,9 @@ import Comment from './components/Comment'
 function App() {
   
   return (
-    <>
-      <h1 className='text-blue-400'>Optimistic Pattern</h1>
+    <dic className="w-full h-screen flex items-center justify-center">
       <Comment/>
-    </>
+    </dic>
   )
 }
 
